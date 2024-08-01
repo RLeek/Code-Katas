@@ -4,3 +4,4 @@ obj
 bin
 ..gitignore.un~
 .gitignore~
+.vs
