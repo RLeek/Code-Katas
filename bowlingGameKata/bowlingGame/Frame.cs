@@ -12,7 +12,7 @@ namespace bowlingGame
         private int score = 0; // (probably be better to define as remaining pins - esh)
         private int totalRolls = 0; 
 
-        private IModifier modifer = new EmptyModifier();
+        private IModifier modifier = new EmptyModifier();
 
         public void BonusScore(int pinsKnockedDown)
         {
@@ -22,17 +22,17 @@ namespace bowlingGame
                 // throw exception
             }
             // validate if valid modifier
-            if (modifer.IsComplete())
+            if (modifier.IsComplete())
             {
                 // throw exception
             }
 
-            modifer.AddScore(pinsKnockedDown);
+            modifier.AddScore(pinsKnockedDown);
         }
 
         public bool IsComplete()
         {
-            return (modifer.IsComplete() && this.IsRollsComplete());
+            return (modifier.IsComplete() && this.IsRollsComplete());
         }
 
         public bool IsRollsComplete()
@@ -62,16 +62,16 @@ namespace bowlingGame
 
             if (score == 10 && totalRolls == 1)
             {
-                modifer = new Strike();
+                modifier = new Strike();
             } else if (score == 10 && totalRolls == 2) 
             {
-                modifer = new Spare();
+                modifier = new Spare();
             }
         }
 
         public int Score()
         {
-            return score + modifer.Score();
+            return score + modifier.Score();
         }
 
     }
